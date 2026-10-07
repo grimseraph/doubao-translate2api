@@ -1,0 +1,67 @@
+{
+  "name": "doubao-translate2api",
+  "version": "0.1.3",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "predev": "npm run build:ui",
+    "build:ui": "node scripts/build-ui.mjs",
+    "build:plugin": "node scripts/build-plugin.mjs",
+    "build": "tsc -p tsconfig.build.json && npm run build:ui && npm run build:plugin",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run build:ui && npm run build:plugin",
+    "test": "vitest run",
+    "test:workers": "vitest run test/workers",
+    "dev:workers": "wrangler dev",
+    "build:workers": "wrangler deploy --dry-run --outdir .artifacts/workers",
+    "build:workers:lite": "node scripts/build-workers-lite.mjs",
+    "check:workers:lite": "node scripts/build-workers-lite.mjs --check",
+    "dev:workers:lite": "wrangler dev --config wrangler.lite.jsonc",
+    "deploy:workers": "wrangler deploy",
+    "deploy:workers:lite": "wrangler deploy --config wrangler.lite.jsonc",
+    "deploy": "npm run deploy:workers",
+    "test:ui": "node scripts/check-admin-ui.mjs",
+    "smoke:local": "node scripts/local-smoke.mjs",
+    "start": "node dist/server.js"
+  },
+  "cloudflare": {
+    "bindings": {
+      "API_KEY": {
+        "description": "生成至少 16 位随机访问密钥，并在沉浸式翻译的 API Key 中填写相同值。"
+      },
+      "DOUBAO_COOKIE": {
+        "description": "填写本人豆包账号的 Cookie Header，需包含 sessionid、sid_tt 和 uid_tt。不要填写 JSON 导出文件。"
+      }
+    }
+  },
+  "overrides": {
+    "miniflare": {
+      "sharp": "0.35.5"
+    }
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.1.2",
+    "@fastify/cors": "^11.1.0",
+    "@fastify/session": "^11.1.3",
+    "fastify": "^5.6.0",
+    "lucide": "^1.52.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.67.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.28.2",
+    "miniflare": "5.20261006.0-alpha",
+    "openai": "^6.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^5.0.3",
+    "wrangler": "4.148.0"
+  }
+}

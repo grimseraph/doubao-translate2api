@@ -1,0 +1,21 @@
+{
+  "name": "doubao-translate2api-lite",
+  "version": "0.1.3",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "build": "node check-size.mjs && node --check worker.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "cloudflare": {
+    "bindings": {
+      "API_KEY": { "description": "生成至少 16 位、不含空格的随机访问密钥，沉浸式翻译中也填写同一个 Key。" },
+      "DOUBAO_COOKIE": { "description": "填写本人豆包账号的 Cookie Header，包含 sessionid、sid_tt 和 uid_tt；不要填写 JSON 文件。" }
+    }
+  },
+  "devDependencies": { "wrangler": "4.148.0" },
+  "overrides": { "miniflare": { "sharp": "0.35.5" } }
+}

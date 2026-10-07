@@ -1,0 +1,23 @@
+{
+  "name": "opencode-doubao-translate",
+  "version": "0.1.0",
+  "description": "Doubao web translation provider for Magpie and OpenCode",
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./server": "./dist/index.mjs"
+  },
+  "files": ["dist/index.mjs", "README.md", "LICENSE", "THIRD_PARTY_LICENSES.txt"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mu-zi-lee/opencode-doubao-translate.git"
+  },
+  "homepage": "https://github.com/mu-zi-lee/opencode-doubao-translate#readme",
+  "bugs": {
+    "url": "https://github.com/mu-zi-lee/opencode-doubao-translate/issues"
+  },
+  "keywords": ["opencode", "opencode-plugin", "magpie", "doubao", "translation"],
+  "license": "MIT",
+  "magpie": { "maxConcurrency": 4 }
+}

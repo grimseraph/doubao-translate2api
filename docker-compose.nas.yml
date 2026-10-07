@@ -1,0 +1,18 @@
+services:
+  doubao-translate2api:
+    image: "${DOUBAO_IMAGE:-muzileee/doubao-translate2api:latest}"
+    pull_policy: always
+    container_name: doubao-translate2api
+    user: "${APP_UID:-1000}:${APP_GID:-1000}"
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-0.0.0.0}:8390:8000"
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "8000"
+      ADMIN_ENABLED: "true"
+      ADMIN_DATA_DIR: "/admin-data"
+      ALLOW_NO_AUTH: "false"
+      DOUBAO_DEFAULT_TARGET_LANG: "${DOUBAO_DEFAULT_TARGET_LANG:-zh}"
+    volumes:
+      - ./data/admin:/admin-data

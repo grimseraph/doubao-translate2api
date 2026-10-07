@@ -1,0 +1,4 @@
+# Generate your own random key (at least 16 characters).
+API_KEY=
+# Paste a Cookie Header containing sessionid, sid_tt and uid_tt.
+DOUBAO_COOKIE=

@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "doubao-translate2api",
+  "main": "src/workers/index.ts",
+  "compatibility_date": "2026-10-06",
+  "compatibility_flags": ["no_nodejs_compat", "no_nodejs_compat_v2"],
+  "workers_dev": true,
+  "secrets": {
+    "required": ["API_KEY", "DOUBAO_COOKIE"]
+  },
+  "vars": {
+    "DOUBAO_DEFAULT_TARGET_LANG": "zh",
+    "DOUBAO_DEFAULT_SCENE": "2",
+    "DOUBAO_REQUEST_TIMEOUT_MS": "45000",
+    "DOUBAO_TOTAL_TIMEOUT_MS": "90000",
+    "DOUBAO_MAX_CONCURRENCY": "2",
+    "DOUBAO_MAX_RETRIES": "0",
+    "TRANSLATION_PROFILE": "immersive-translate",
+    "CORS_ORIGINS": "*"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1
+  }
+}

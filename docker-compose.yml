@@ -1,0 +1,20 @@
+services:
+  doubao-translate2api:
+    build:
+      context: .
+      args:
+        APP_UID: "${APP_UID:-1000}"
+        APP_GID: "${APP_GID:-1000}"
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "8000"
+      DOUBAO_COOKIE_FILE: "/data/cookie.txt"
+      ADMIN_DATA_DIR: "/admin-data"
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:8390:8000"
+    volumes:
+      - ./data:/data:ro
+      - ./data/admin:/admin-data
